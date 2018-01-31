@@ -9,10 +9,25 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <sys/types.h>
+#include <sys/utsname.h>
 
 int fn(void *arg)
 {
-    printf("Hello! From the cloned instance. Pid=%d\n", getpid());
+    printf("Pid of cloned instance: %d Parent's pid: %d\n", getpid(), getppid());
+    const char newHostName[9] = "cloned-vm";
+    size_t n = sizeof(newHostName);
+    if(sethostname("cloned-vm", n) != 0)
+    {
+        perror("Calling sethostname('cloned-vm')");
+        exit(EXIT_FAILURE);
+    }
+    struct utsname unameData;
+    if (uname(&unameData) != 0)
+    {
+        perror("Calling utsname");
+        exit(EXIT_FAILURE);
+    }
+    printf("uname -a: %s %s %s %s %s %s.\n", unameData.sysname, unameData.nodename, unameData.release, unameData.version, unameData.machine, unameData.domainname);
     return 0;
 }
 

@@ -163,6 +163,7 @@ int main( int argc, const char* argv[] )
         exit(EXIT_FAILURE);
     }
     wait(NULL);
+    sleep(60000);
     free(child_stack);
     printf("INFO: Child process terminated.\n");
 }

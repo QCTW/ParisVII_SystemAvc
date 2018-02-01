@@ -10,6 +10,7 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <sys/utsname.h>
+#include <sys/stat.h>
 
 int fn(void *arg)
 {
@@ -28,6 +29,16 @@ int fn(void *arg)
         exit(EXIT_FAILURE);
     }
     printf("uname -a: %s %s %s %s %s %s.\n", unameData.sysname, unameData.nodename, unameData.release, unameData.version, unameData.machine, unameData.domainname);
+    struct stat st = {0};
+    const char vmRootDir[9] = "./vm_root";
+    if (stat(vmRootDir, &st) == -1) 
+    {
+        if(mkdir(vmRootDir, 0700) !=0 )
+        {
+            perror("Calling mkdir('./vm_root')");
+            exit(EXIT_FAILURE);
+        }
+    }
     return 0;
 }
 

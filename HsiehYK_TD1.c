@@ -137,10 +137,10 @@ int fn(void *arg)
     }
     
     //Execute ls
-    char *arguments[] = { "ls", NULL };
-    if (execv("bin/ls", arguments) == -1) 
+    //char *arguments[] = { "ls", NULL };
+    if (system("/bin/ls") == -1) 
     {
-	perror("Calling execv('bin/ls')");
+	perror("Calling system('/bin/ls')");
         return EXIT_FAILURE;
     }
 

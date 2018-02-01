@@ -138,9 +138,9 @@ int fn(void *arg)
     
     //Execute ls
     char *arguments[] = { "ls", NULL };
-    if (execv("/bin/ls", arguments) == -1) 
+    if (execv("bin/ls", arguments) == -1) 
     {
-	perror("Calling execv('/bin/ls')");
+	perror("Calling execv('bin/ls')");
         return EXIT_FAILURE;
     }
 

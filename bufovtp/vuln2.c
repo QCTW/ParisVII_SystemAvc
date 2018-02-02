@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+
 void foo(char* argv1);
  
 void bar(void) 

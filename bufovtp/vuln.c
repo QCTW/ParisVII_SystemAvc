@@ -1,5 +1,7 @@
 // A compiler avec -fno-stack-protector a partir de gcc 4.1 
 #include <string.h> 
+#include <stdio.h>
+
 void foo(const char* buf) 
 { 
   char buffer[100]; 
